@@ -40,15 +40,15 @@ public class Notepad extends JFrame implements ActionListener, WindowListener{
     
     con.add(sbrText);
     
-    createMenuItem(jmfile, "New");
-    createMenuItem(jmfile, "Open");
-    createMenuItem(jmfile, "Save");
+    createMenuItem(jmfile, "  New  ");
+    createMenuItem(jmfile, "  Open  ");
+    createMenuItem(jmfile, "  Save  ");
     jmfile.addSeparator();
-    createMenuItem(jmfile, "Exit");
+    createMenuItem(jmfile, "  Exit  ");
     
-    createMenuItem(jmedit, "Cut");
-    createMenuItem(jmedit, "Copy");
-    createMenuItem(jmedit, "Paste");
+    createMenuItem(jmedit, "  Cut  ");
+    createMenuItem(jmedit, "  Copy  ");
+    createMenuItem(jmedit, "  Paste  ");
     
     createMenuItem(jmhelp, "About Notepad");
     
@@ -61,7 +61,7 @@ public class Notepad extends JFrame implements ActionListener, WindowListener{
     
     setIconImage(Toolkit.getDefaultToolkit().getImage("notepad.gif"));
     addWindowListener(this);
-    setSize(500,500);
+    setSize(800,600);
     setTitle("Untitled.txt - Notepad");
     setVisible(true);
 }
@@ -74,12 +74,12 @@ public class Notepad extends JFrame implements ActionListener, WindowListener{
     }
     public void actionPerformed(ActionEvent e){
         JFileChooser jfc=new JFileChooser();
-        if(e.getActionCommand().equals("New")){
+        if(e.getActionCommand().equals("  New  ")){
             this.setTitle("Untitled.txt - Notepad");
             jta.setText("");
             fnameContainer=null;
         }
-        else if(e.getActionCommand().equals("Open")){
+        else if(e.getActionCommand().equals("  Open  ")){
             int ret=jfc.showDialog(null, "Open");
             if(ret==JFileChooser.APPROVE_OPTION){
                 try{
@@ -87,9 +87,9 @@ public class Notepad extends JFrame implements ActionListener, WindowListener{
                     OpenFile(fyl.getAbsolutePath());
                     this.setTitle(fyl.getName()+"-Notepad");
                     fnameContainer=fyl;
-                } catch(IOException er){}
+                } catch(IOException err){}
             }
-        } else if(e.getActionCommand().equals("Save")){
+        } else if(e.getActionCommand().equals("  Save  ")){
             if(fnameContainer!=null){
                 jfc.setCurrentDirectory(fnameContainer);
                 jfc.setSelectedFile(fnameContainer);
@@ -107,21 +107,20 @@ public class Notepad extends JFrame implements ActionListener, WindowListener{
                     SaveFile(fyl.getAbsolutePath());
                     this.setTitle(fyl.getName()+"-Notepad");
                     fnameContainer=fyl;
-                }catch(Exception er){}
-            } else if(e.getActionCommand().equals("Exit")){
+                }catch(Exception ets){}
+            } }else if(e.getActionCommand().equals("  Exit  ")){
                 Exiting();
-            } else if (e.getActionCommand().equals("Copy")){
+            } else if (e.getActionCommand().equals("  Copy  ")){
                 jta.copy();
-            } else if (e.getActionCommand().equals("Paste")){
+            } else if (e.getActionCommand().equals("  Paste  ")){
                 jta.paste();
-            } else if(e.getActionCommand().equals("About NotePad")){
-                JOptionPane.showMessageDialog(this, "Created by :- Deepak under the guidance of GFG", "Notepad", JOptionPane.INFORMATION_MESSAGE);
-        } else if(e.getActionCommand().equals("Cut")){
+            } else if(e.getActionCommand().equals("About Notepad")){
+               JOptionPane.showMessageDialog(this, "Created by :- Deepak under the guidance of GFG", "Notepad", JOptionPane.INFORMATION_MESSAGE);
+              
+        } else if(e.getActionCommand().equals("  Cut  ")){
             jta.cut();
         }
     }
-}
-
     public void OpenFile(String fname)throws IOException {
     BufferedReader d=new BufferedReader(new InputStreamReader(new FileInputStream(fname)));   
     String l;
